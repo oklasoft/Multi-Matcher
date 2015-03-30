@@ -14,6 +14,10 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Multi_Matcher" customModuleProvider="target">
             <connections>
+                <outlet property="caseFileField" destination="H1e-jb-sRU" id="bzz-lK-hsL"/>
+                <outlet property="controlFileField" destination="Q79-xy-wnU" id="sRI-2V-As1"/>
+                <outlet property="outputFileField" destination="vaX-KG-v7b" id="GkY-yx-OhE"/>
+                <outlet property="runButton" destination="2a2-WY-1bk" id="wBg-Pm-R1Q"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -389,24 +393,27 @@
         <window title="Multi Matcher" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="232" y="744" width="459" height="215"/>
+            <rect key="contentRect" x="232" y="744" width="509" height="215"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
-            <value key="minSize" type="size" width="459" height="215"/>
-            <value key="maxSize" type="size" width="459" height="215"/>
+            <value key="minSize" type="size" width="509" height="215"/>
+            <value key="maxSize" type="size" width="509" height="215"/>
             <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="459" height="215"/>
+                <rect key="frame" x="0.0" y="0.0" width="509" height="215"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H1e-jb-sRU">
-                        <rect key="frame" x="67" y="173" width="285" height="22"/>
+                        <rect key="frame" x="81" y="173" width="316" height="22"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" placeholderString="Select CSV file of case subjects" drawsBackground="YES" id="YLL-Pm-DZE">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
+                        <connections>
+                            <outlet property="delegate" destination="Voe-Tx-rLC" id="aOX-VH-UKw"/>
+                        </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qDi-Ml-TDI">
-                        <rect key="frame" x="18" y="176" width="47" height="17"/>
+                        <rect key="frame" x="32" y="176" width="47" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Cases:" id="Qta-bk-cLg">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -414,68 +421,66 @@
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wgE-Fb-Hwr">
-                        <rect key="frame" x="354" y="166" width="91" height="32"/>
-                        <buttonCell key="cell" type="push" title="Select..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="t5q-Aw-eRg">
+                        <rect key="frame" x="410" y="172" width="79" height="24"/>
+                        <buttonCell key="cell" type="smallSquare" title="Select..." bezelStyle="smallSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="t5q-Aw-eRg">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="doSelectCases:" target="Voe-Tx-rLC" id="clR-9H-ldL"/>
+                        </connections>
                     </button>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q79-xy-wnU">
-                        <rect key="frame" x="67" y="143" width="285" height="22"/>
+                        <rect key="frame" x="81" y="143" width="316" height="22"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" placeholderString="Select CSV file of control subjects" drawsBackground="YES" id="td5-Ql-CvK">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
+                        <connections>
+                            <outlet property="delegate" destination="Voe-Tx-rLC" id="p6Z-p6-TCr"/>
+                        </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sxL-Rz-nXg">
-                        <rect key="frame" x="7" y="146" width="60" height="17"/>
+                        <rect key="frame" x="21" y="146" width="60" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Controls:" id="r8a-2N-d7B">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bi3-i6-IHT">
-                        <rect key="frame" x="354" y="136" width="91" height="32"/>
-                        <buttonCell key="cell" type="push" title="Select..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wlz-g0-7uO">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                    </button>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vaX-KG-v7b">
-                        <rect key="frame" x="67" y="113" width="285" height="22"/>
+                        <rect key="frame" x="81" y="113" width="316" height="22"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" placeholderString="Select new file to output matches" drawsBackground="YES" id="dq8-xS-SL4">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
+                        <connections>
+                            <outlet property="delegate" destination="Voe-Tx-rLC" id="n74-ck-g6J"/>
+                        </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pTc-D4-igD">
-                        <rect key="frame" x="14" y="116" width="51" height="17"/>
+                        <rect key="frame" x="28" y="116" width="51" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Output:" id="MjC-q2-jFO">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aaG-Tp-UnP">
-                        <rect key="frame" x="354" y="106" width="91" height="32"/>
-                        <buttonCell key="cell" type="push" title="Select..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bFz-Nc-e0B">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                    </button>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ufT-GW-xnc">
-                        <rect key="frame" x="67" y="83" width="285" height="22"/>
+                        <rect key="frame" x="81" y="83" width="316" height="22"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" placeholderString="Input columns on which to match" drawsBackground="YES" id="CfZ-5m-enV">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
+                        <connections>
+                            <outlet property="delegate" destination="Voe-Tx-rLC" id="s8E-Di-CUD"/>
+                        </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aLI-hn-EKK">
-                        <rect key="frame" x="4" y="86" width="63" height="17"/>
+                        <rect key="frame" x="18" y="86" width="63" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Columns:" id="NGU-yi-mB9">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -483,7 +488,7 @@
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2a2-WY-1bk">
-                        <rect key="frame" x="380" y="13" width="65" height="32"/>
+                        <rect key="frame" x="430" y="13" width="65" height="32"/>
                         <buttonCell key="cell" type="push" title="Run" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bOm-2Z-ezG">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -491,13 +496,36 @@
 DQ
 </string>
                         </buttonCell>
+                        <connections>
+                            <action selector="runMatch:" target="Voe-Tx-rLC" id="AcX-N9-89k"/>
+                        </connections>
                     </button>
                     <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="QEJ-Il-n0w">
-                        <rect key="frame" x="362" y="22" width="16" height="16"/>
+                        <rect key="frame" x="412" y="22" width="16" height="16"/>
                     </progressIndicator>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NRa-O9-MCa">
+                        <rect key="frame" x="410" y="142" width="79" height="24"/>
+                        <buttonCell key="cell" type="smallSquare" title="Select..." bezelStyle="smallSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="v5b-tr-GeH">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="doSelectControls:" target="Voe-Tx-rLC" id="5mp-AX-y1Q"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eAr-0F-VIr">
+                        <rect key="frame" x="410" y="112" width="79" height="24"/>
+                        <buttonCell key="cell" type="smallSquare" title="Select..." bezelStyle="smallSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ioW-pc-oxQ">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="doSelectOutput:" target="Voe-Tx-rLC" id="8JQ-8b-gml"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="402.5" y="378.5"/>
+            <point key="canvasLocation" x="427.5" y="378.5"/>
         </window>
     </objects>
 </document>
