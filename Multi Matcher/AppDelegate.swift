@@ -16,6 +16,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var controlFileField: NSTextField!
     @IBOutlet weak var outputFileField: NSTextField!
     @IBOutlet weak var keyField: NSTextField!
+    @IBOutlet var results: NSTextView!
+    @IBOutlet weak var statusSpinner: NSProgressIndicator!
     @IBOutlet weak var runButton: NSButton!
 
 
@@ -35,6 +37,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func doSelectCases(sender: AnyObject) {
         selectFileDialog("Choose", message: "Select CSV file containing cases", target: caseFileField)
     }
+    
     @IBAction func doSelectControls(sender: AnyObject) {
         selectFileDialog("Choose", message: "Select CSV file containing controls", target: controlFileField)
     }
@@ -84,6 +87,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func runMatch(sender: AnyObject) {
+        results.string = ""
+        if !checkReadyToRun() {
+            results.string = "Not enough parametersgopkg.in/alecthomas/kingpin.v1"
+            return
+        }
+        statusSpinner.startAnimation(self)
+        results.string = "Running..."
+        statusSpinner.stopAnimation(self)
     }
     
     override func controlTextDidChange(obj: NSNotification) {
