@@ -25,6 +25,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
     }
+    
+    func applicationShouldTerminateAfterLastWindowClosed(sender: NSApplication) -> Bool {
+        return true
+    }
+    
 
     @IBAction func doSelectCases(sender: AnyObject) {
         selectFileDialog("Choose", message: "Select CSV file containing cases", target: caseFileField)
@@ -62,13 +67,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             (result : Int) in
             if NSFileHandlingPanelOKButton == result {
                 var theURL = panel.URL
-                NSLog("Selected %@", theURL!.path!)
                 target.stringValue = theURL!.path!
             }
         }
     }
 
     @IBAction func runMatch(sender: AnyObject) {
+    }
+    
+    override func controlTextDidChange(obj: NSNotification) {
+        let field:NSTextField = obj.object as NSTextField
+        NSLog("Change to %@",field)
     }
 }
 

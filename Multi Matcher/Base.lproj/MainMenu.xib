@@ -422,7 +422,7 @@
                     </textField>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wgE-Fb-Hwr">
                         <rect key="frame" x="410" y="172" width="79" height="24"/>
-                        <buttonCell key="cell" type="smallSquare" title="Select..." bezelStyle="smallSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="t5q-Aw-eRg">
+                        <buttonCell key="cell" type="smallSquare" title="Browse..." bezelStyle="smallSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="t5q-Aw-eRg">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -505,7 +505,7 @@ DQ
                     </progressIndicator>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NRa-O9-MCa">
                         <rect key="frame" x="410" y="142" width="79" height="24"/>
-                        <buttonCell key="cell" type="smallSquare" title="Select..." bezelStyle="smallSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="v5b-tr-GeH">
+                        <buttonCell key="cell" type="smallSquare" title="Browse..." bezelStyle="smallSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="v5b-tr-GeH">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -515,7 +515,7 @@ DQ
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eAr-0F-VIr">
                         <rect key="frame" x="410" y="112" width="79" height="24"/>
-                        <buttonCell key="cell" type="smallSquare" title="Select..." bezelStyle="smallSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ioW-pc-oxQ">
+                        <buttonCell key="cell" type="smallSquare" title="Browse..." bezelStyle="smallSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ioW-pc-oxQ">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
