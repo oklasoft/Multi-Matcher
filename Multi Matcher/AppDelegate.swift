@@ -15,6 +15,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var caseFileField: NSTextField!
     @IBOutlet weak var controlFileField: NSTextField!
     @IBOutlet weak var outputFileField: NSTextField!
+    @IBOutlet weak var keyField: NSTextField!
     @IBOutlet weak var runButton: NSButton!
 
 
@@ -46,8 +47,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             (result : Int) in
             if NSFileHandlingPanelOKButton == result {
                 var theURL = panel.URL
-                NSLog("Selected %@", theURL!.path!)
                 self.outputFileField.stringValue = theURL!.path!
+                self.enableRunIfReady()
             }
         }
 
@@ -68,16 +69,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             if NSFileHandlingPanelOKButton == result {
                 var theURL = panel.URL
                 target.stringValue = theURL!.path!
+                self.enableRunIfReady()
             }
         }
     }
 
+    func checkReadyToRun() -> Bool {
+        return caseFileField.stringValue != "" && controlFileField.stringValue != "" &&
+            outputFileField.stringValue != "" && keyField.stringValue != ""
+    }
+    
+    func enableRunIfReady() {
+        runButton.enabled = checkReadyToRun()
+    }
+    
     @IBAction func runMatch(sender: AnyObject) {
     }
     
     override func controlTextDidChange(obj: NSNotification) {
-        let field:NSTextField = obj.object as NSTextField
-        NSLog("Change to %@",field)
+        enableRunIfReady()
     }
 }
 

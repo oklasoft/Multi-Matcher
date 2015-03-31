@@ -16,6 +16,7 @@
             <connections>
                 <outlet property="caseFileField" destination="H1e-jb-sRU" id="bzz-lK-hsL"/>
                 <outlet property="controlFileField" destination="Q79-xy-wnU" id="sRI-2V-As1"/>
+                <outlet property="keyField" destination="ufT-GW-xnc" id="bob-Iu-lKz"/>
                 <outlet property="outputFileField" destination="vaX-KG-v7b" id="GkY-yx-OhE"/>
                 <outlet property="runButton" destination="2a2-WY-1bk" id="wBg-Pm-R1Q"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
