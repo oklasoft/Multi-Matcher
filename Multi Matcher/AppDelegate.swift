@@ -93,6 +93,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
         statusSpinner.startAnimation(self)
+        runButton.title = "Stop"
         results.string = "Running..."
         statusSpinner.stopAnimation(self)
     }
