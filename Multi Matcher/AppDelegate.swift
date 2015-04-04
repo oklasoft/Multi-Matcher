@@ -23,6 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ShellWrapperDelegate {
     @IBOutlet weak var controlFileField: NSTextField!
     @IBOutlet weak var outputFileField: NSTextField!
     @IBOutlet weak var keyField: NSTextField!
+    @IBOutlet weak var VerboseOutput: NSButton!
     @IBOutlet var results: NSTextView!
     @IBOutlet weak var statusSpinner: NSProgressIndicator!
     @IBOutlet weak var runButton: NSButton!
@@ -68,11 +69,16 @@ class AppDelegate: NSObject, NSApplicationDelegate, ShellWrapperDelegate {
         }
         
         var args = [String]()
-        args.append("--out-separator")
-        args.append("\t")
-        args.append("-v")
-//        args.append("-o")
-//        args.append(outputFileField.stringValue)
+        if NSOnState == VerboseOutput.state {
+            args.append("-v")
+        }
+        if "" != outputFileField.stringValue {
+            args.append("-o")
+            args.append(outputFileField.stringValue)
+        } else {
+            args.append("--out-separator")
+            args.append("\t")
+        }
         args.append(keyField.stringValue)
         args.append(caseFileField.stringValue)
         args.append(controlFileField.stringValue)
@@ -90,10 +96,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, ShellWrapperDelegate {
     
     func applicationShouldTerminateAfterLastWindowClosed(sender: NSApplication) -> Bool {
         return true
-    }
-    
-    func saveDocument(sender :AnyObject) {
-        
     }
     
     //Delegation for input text fields to enable/disable Run button
@@ -126,7 +128,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ShellWrapperDelegate {
     //We can run if there are two input files, a selection of column & an output filename
     func checkReadyToRun() -> Bool {
         return caseFileField.stringValue != "" && controlFileField.stringValue != "" &&
-            outputFileField.stringValue != "" && keyField.stringValue != ""
+            keyField.stringValue != ""
     }
     
     func enableRunIfReady() {
