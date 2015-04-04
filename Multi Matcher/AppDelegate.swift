@@ -79,7 +79,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ShellWrapperDelegate {
             args.append("--out-separator")
             args.append("\t")
         }
-        args.append(keyField.stringValue)
+        args.append(parseKeys(keyField.stringValue))
         args.append(caseFileField.stringValue)
         args.append(controlFileField.stringValue)
 
@@ -88,7 +88,20 @@ class AppDelegate: NSObject, NSApplicationDelegate, ShellWrapperDelegate {
         mmatcher?.start()
     }
 
+    func parseKeys(k: String) -> String {
+        return join(",",k.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).filter({!Swift.isEmpty($0)}))
+    }
+    
     func applicationDidFinishLaunching(aNotification: NSNotification) {
+        results.textContainer!.widthTracksTextView    =   false
+        results.textContainer!.containerSize          =   CGSize(width: CGFloat.max, height: CGFloat.max)
+        results.typingAttributes = NSDictionary(object: NSFont(name: "Menlo", size: 11)!, forKey: NSFontAttributeName)
+        
+        let style = NSMutableParagraphStyle()
+        style.defaultTabInterval = 8
+        results.defaultParagraphStyle = style
+
+        
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
@@ -138,14 +151,17 @@ class AppDelegate: NSObject, NSApplicationDelegate, ShellWrapperDelegate {
     // ShellWrapperDelegate
     func appendStdOut(wrapper: ShellWrapper, output: String) {
 //        dispatch_async(dispatch_get_main_queue()) {
-            self.results.textStorage?.appendAttributedString(NSAttributedString(string:output))
+//            self.results.textStorage?.appendAttributedString(NSAttributedString(string:output))
+        self.results.string = self.results.string! + output
             self.results.scrollRangeToVisible(NSRange(location: countElements(self.results.string!), length: 0))
 //        }
     }
     
     func appendStdErr(wrapper: ShellWrapper, err: String) {
 //        dispatch_async(dispatch_get_main_queue()) {
-            self.results.textStorage?.appendAttributedString(NSAttributedString(string:err))
+//            self.results.textStorage?.appendAttributedString(NSAttributedString(string:err))
+        self.results.string = self.results.string! + err
+
             self.results.scrollRangeToVisible(NSRange(location: countElements(self.results.string!), length: 0))
 //        }
     }
