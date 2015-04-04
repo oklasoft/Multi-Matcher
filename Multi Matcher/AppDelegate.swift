@@ -68,6 +68,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, ShellWrapperDelegate {
         }
         
         var args = [String]()
+        args.append("--out-separator")
+        args.append("\t")
         args.append("-v")
 //        args.append("-o")
 //        args.append(outputFileField.stringValue)
@@ -88,6 +90,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, ShellWrapperDelegate {
     
     func applicationShouldTerminateAfterLastWindowClosed(sender: NSApplication) -> Bool {
         return true
+    }
+    
+    func saveDocument(sender :AnyObject) {
+        
     }
     
     //Delegation for input text fields to enable/disable Run button
