@@ -12,9 +12,11 @@
 import Cocoa
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, ShellWrapperDelegate {
 
     let mmatcherPath = NSBundle.mainBundle().pathForResource("mmatcher", ofType: "x86_64")
+    var mmatcher : ShellWrapper?
+    var mmatcherRunning = false
 
     @IBOutlet weak var window: NSWindow!
     @IBOutlet weak var caseFileField: NSTextField!
@@ -53,15 +55,29 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     //Fire of the actual mmatcher run
     @IBAction func runMatch(sender: AnyObject) {
-        results.string = ""
-        if !checkReadyToRun() {
-            results.string = "Not enough parametersgopkg.in/alecthomas/kingpin.v1"
+        if mmatcherRunning {
+            mmatcher?.stop()
             return
         }
-        statusSpinner.startAnimation(self)
-        runButton.title = "Stop"
-        results.string = "Running... \(mmatcherPath!)"
-        statusSpinner.stopAnimation(self)
+        mmatcherRunning = true
+        
+        results.string = ""
+        if !checkReadyToRun() {
+            results.string = "Not enough parameters"
+            return
+        }
+        
+        var args = [String]()
+        args.append("-v")
+//        args.append("-o")
+//        args.append(outputFileField.stringValue)
+        args.append(keyField.stringValue)
+        args.append(caseFileField.stringValue)
+        args.append(controlFileField.stringValue)
+
+        mmatcher = ShellWrapper(path: mmatcherPath!, args: args)
+        mmatcher?.delegate = self
+        mmatcher?.start()
     }
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
@@ -110,6 +126,34 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func enableRunIfReady() {
         runButton.enabled = checkReadyToRun()
     }
+    
+    // ShellWrapperDelegate
+    func appendStdOut(wrapper: ShellWrapper, output: String) {
+//        dispatch_async(dispatch_get_main_queue()) {
+            self.results.textStorage?.appendAttributedString(NSAttributedString(string:output))
+            self.results.scrollRangeToVisible(NSRange(location: countElements(self.results.string!), length: 0))
+//        }
+    }
+    
+    func appendStdErr(wrapper: ShellWrapper, err: String) {
+//        dispatch_async(dispatch_get_main_queue()) {
+            self.results.textStorage?.appendAttributedString(NSAttributedString(string:err))
+            self.results.scrollRangeToVisible(NSRange(location: countElements(self.results.string!), length: 0))
+//        }
+    }
+    
+    func processStarted(wrapper: ShellWrapper) {
+        statusSpinner.startAnimation(self)
+        runButton.title = "Stop"
+        mmatcherRunning = true
+    }
+    
+    func processFinished(wrapper: ShellWrapper, status: Int) {
+        statusSpinner.stopAnimation(self)
+        runButton.title = "Run"
+        mmatcherRunning = false
+    }
+
     
 }
 
