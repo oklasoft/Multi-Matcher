@@ -23,7 +23,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, ShellWrapperDelegate {
     @IBOutlet weak var controlFileField: NSTextField!
     @IBOutlet weak var outputFileField: NSTextField!
     @IBOutlet weak var keyField: NSTextField!
-    @IBOutlet weak var VerboseOutput: NSButton!
+    @IBOutlet weak var verboseOutput: NSButton!
+    @IBOutlet weak var includeHeaders: NSButton!
     @IBOutlet var results: NSTextView!
     @IBOutlet weak var statusSpinner: NSProgressIndicator!
     @IBOutlet weak var runButton: NSButton!
@@ -69,8 +70,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, ShellWrapperDelegate {
         }
         
         var args = [String]()
-        if NSOnState == VerboseOutput.state {
+        if NSOnState == verboseOutput.state {
             args.append("-v")
+        }
+        if NSOnState == includeHeaders.state {
+            args.append("-h")
         }
         if "" != outputFileField.stringValue {
             args.append("-o")
