@@ -23,6 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ShellWrapperDelegate {
     @IBOutlet weak var controlFileField: NSTextField!
     @IBOutlet weak var outputFileField: NSTextField!
     @IBOutlet weak var keyField: NSTextField!
+    @IBOutlet weak var allowedMatches: NSTextField!
     @IBOutlet weak var verboseOutput: NSButton!
     @IBOutlet weak var includeHeaders: NSButton!
     @IBOutlet var results: NSTextView!
@@ -76,6 +77,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, ShellWrapperDelegate {
         if NSOnState == includeHeaders.state {
             args.append("-h")
         }
+        if allowedMatches.integerValue > 0 {
+            args.append("-m")
+            args.append(String(allowedMatches.integerValue))
+        }
         if "" != outputFileField.stringValue {
             args.append("-o")
             args.append(outputFileField.stringValue)
@@ -97,6 +102,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ShellWrapperDelegate {
     }
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
+        allowedMatches.stringValue = "1"
         results.richText = false
         results.textContainer!.widthTracksTextView    =   false
         results.textContainer!.containerSize          =   CGSize(width: CGFloat.max, height: CGFloat.max)
@@ -105,8 +111,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, ShellWrapperDelegate {
         let style = NSMutableParagraphStyle()
         style.defaultTabInterval = 8
         results.defaultParagraphStyle = style
-
-        
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
