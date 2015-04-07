@@ -98,7 +98,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ShellWrapperDelegate {
     }
 
     func parseKeys(k: String) -> String {
-        return join(",",k.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).filter({!Swift.isEmpty($0)}))
+        return join(",",join(",",k.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).filter({!Swift.isEmpty($0)})).componentsSeparatedByCharactersInSet(NSCharacterSet(charactersInString: ",")).filter({!Swift.isEmpty($0)}))
     }
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
