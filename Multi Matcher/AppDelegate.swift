@@ -104,6 +104,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ShellWrapperDelegate {
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         allowedMatches.stringValue = "1"
         results.richText = false
+        results.horizontallyResizable = true
         results.textContainer!.widthTracksTextView    =   false
         results.textContainer!.containerSize          =   CGSize(width: CGFloat.max, height: CGFloat.max)
         results.typingAttributes = NSDictionary(object: NSFont(name: "Menlo", size: 11)!, forKey: NSFontAttributeName)
