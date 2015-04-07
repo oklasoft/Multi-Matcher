@@ -107,13 +107,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, ShellWrapperDelegate {
         results.horizontallyResizable = true
         results.textContainer!.widthTracksTextView    =   false
         results.textContainer!.containerSize          =   CGSize(width: CGFloat.max, height: CGFloat.max)
-        results.typingAttributes = NSDictionary(object: NSFont(name: "Menlo", size: 11)!, forKey: NSFontAttributeName)
         
         let style = NSMutableParagraphStyle()
-        style.defaultTabInterval = 8
+        style.defaultTabInterval = 12
         results.defaultParagraphStyle = style
+        results.typingAttributes = NSDictionary(object: NSFont(name: "Menlo", size: 11)!, forKey: NSFontAttributeName)
+        results.typingAttributes[NSParagraphStyleAttributeName] = style
     }
-
+    
     func applicationWillTerminate(aNotification: NSNotification) {
     }
     

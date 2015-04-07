@@ -408,7 +408,7 @@
                 <subviews>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="H1e-jb-sRU">
                         <rect key="frame" x="81" y="317" width="316" height="22"/>
-                        <textFieldCell key="cell" lineBreakMode="truncatingMiddle" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" placeholderString="Select CSV file of case subjects" drawsBackground="YES" id="YLL-Pm-DZE">
+                        <textFieldCell key="cell" lineBreakMode="truncatingMiddle" selectable="YES" editable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" placeholderString="Select CSV file of case subjects" drawsBackground="YES" id="YLL-Pm-DZE">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -441,7 +441,7 @@
                     </button>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Q79-xy-wnU">
                         <rect key="frame" x="81" y="287" width="316" height="22"/>
-                        <textFieldCell key="cell" lineBreakMode="truncatingMiddle" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" placeholderString="Select CSV file of control subjects" drawsBackground="YES" id="td5-Ql-CvK">
+                        <textFieldCell key="cell" lineBreakMode="truncatingMiddle" selectable="YES" editable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" placeholderString="Select CSV file of control subjects" drawsBackground="YES" id="td5-Ql-CvK">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
