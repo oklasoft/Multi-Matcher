@@ -14,7 +14,7 @@ based on multiple matches between selected columns
 
 The repository has no external dependencies & can be cloned & built if desired.
 
-Alternatively, a pre-built .app can be found in the [latest releases](releases/latest)
+Alternatively, a pre-built .app can be found in the [latest releases](https://github.com/oklasoft/Multi-Matcher/releases/latest)
 
 Once you have the .app, just copy it to where you like to keep apps.
 
