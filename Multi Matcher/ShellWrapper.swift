@@ -106,15 +106,15 @@ class ShellWrapper : NSObject {
         var msg = NSString(data: data, encoding: NSUTF8StringEncoding)
         switch destination {
         case .StdErr:
-            delegate?.appendStdErr(self, err: msg!)
+            delegate?.appendStdErr(self, err: msg! as String)
         case .StdOut:
-            delegate?.appendStdOut(self, output: msg!)
+            delegate?.appendStdOut(self, output: msg! as String)
         }
     }
     
     func dataArrived(n: NSNotification) {
-        let obj = n.object as NSFileHandle
-        let data = n.userInfo!["NSFileHandleNotificationDataItem"] as NSData
+        let obj = n.object as! NSFileHandle
+        let data = n.userInfo!["NSFileHandleNotificationDataItem"] as! NSData
         if data.length > 0 {
             if obj == stdout {
                 sendOutput(data, destination: OutputType.StdOut)

@@ -111,7 +111,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, ShellWrapperDelegate {
         let style = NSMutableParagraphStyle()
         style.defaultTabInterval = 12
         results.defaultParagraphStyle = style
-        results.typingAttributes = NSDictionary(object: NSFont(name: "Menlo", size: 11)!, forKey: NSFontAttributeName)
+//        results.typingAttributes = NSDictionary(object: NSFont(name: "Menlo", size: 11)!, forKey: NSFontAttributeName)
+        results.typingAttributes = NSDictionary() as [NSObject : AnyObject]
+        results.typingAttributes[NSFontAttributeName] = NSFont(name: "Menlo", size: 11)
         results.typingAttributes[NSParagraphStyleAttributeName] = style
     }
     
@@ -164,7 +166,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ShellWrapperDelegate {
 //        dispatch_async(dispatch_get_main_queue()) {
 //            self.results.textStorage?.appendAttributedString(NSAttributedString(string:output))
         self.results.string = self.results.string! + output
-            self.results.scrollRangeToVisible(NSRange(location: countElements(self.results.string!), length: 0))
+            self.results.scrollRangeToVisible(NSRange(location: count(self.results.string!), length: 0))
 //        }
     }
     
@@ -173,7 +175,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ShellWrapperDelegate {
 //            self.results.textStorage?.appendAttributedString(NSAttributedString(string:err))
         self.results.string = self.results.string! + err
 
-            self.results.scrollRangeToVisible(NSRange(location: countElements(self.results.string!), length: 0))
+            self.results.scrollRangeToVisible(NSRange(location: count(self.results.string!), length: 0))
 //        }
     }
     
